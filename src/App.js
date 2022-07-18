@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { formatUserName } from './utils';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { formatUserName } from "./utils";
+import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -11,7 +11,9 @@ function App() {
     let mounted = true;
 
     const getUsers = async () => {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
       if (mounted) {
         setUsers(response.data);
       }
@@ -19,7 +21,9 @@ function App() {
 
     getUsers();
 
-    return () => { mounted = false; }
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
@@ -27,9 +31,10 @@ function App() {
       <div>Users:</div>
       {users.length ? (
         <ul data-testid="user-list">
-          {users.map(user => (
+          {users.map((user) => (
             <li key={user.id} className="user" data-testid="user-item">
-              <span>{user.name}</span> (<span>{formatUserName(user.username)}</span>)
+              <span>{user.name}</span> (
+              <span>{formatUserName(user.username)}</span>)
             </li>
           ))}
         </ul>
